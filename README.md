@@ -25,4 +25,8 @@ En caso de no tener idea de cuales son los tipos de identificaciones correctas, 
 donde te desplegara los datos que debes de saber para llenar el registro.
 
 La api permite que haya equivocaciones con lo que se especifico anteriormente, por ende, no se rompera si ingresas datos incorrectos. De lo contrario, me gustaria saber cual 
-fue el caso en que se registro el break del programa, a modo de retro alimentacion
+fue el caso en que se registro el break del programa, a modo de retro alimentacion.
+
+## Link de la grabación
+
+Aquí podra observar el video que hacia parte del entregable de la prueba, puede verlo [aquí](https://www.loom.com/share/4bc00c57f3ed43cb89c2149239856abc)
