@@ -48,23 +48,15 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
         }
         if(idNumber.isEmpty()){
             idNumber=null;
-        }else{
-            idNumber=idNumber.toUpperCase();
         }
         if(employeeCountry.isEmpty()){
             employeeCountry=null;
-        }else{
-            employeeCountry=employeeCountry.toUpperCase();
         }
         if(email.isEmpty()){
             email=null;
-        }else{
-            email=email.toUpperCase();
         }
         if(state.isEmpty()){
             state=null;
-        }else{
-            state=state.toUpperCase();
         }
         List<Empleado>listado= repository.findWithParametersIgnoreCase(firstName,surname,secondSurname,otherNames,idNumber,employeeCountry,email,state);
         System.out.println("Entra despues de");
@@ -117,9 +109,10 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
         Empleado actual=repository.findById(ids).get();
         try{
 
-            if(!(actual.getEmployeeCountry().equalsIgnoreCase(employee.getEmployeeCountry())||
+            if(actual.getEmployeeCountry().equalsIgnoreCase(employee.getEmployeeCountry())||
                     actual.getFirstName().equalsIgnoreCase(employee.getFirstName())||
-                    actual.getSurname().equalsIgnoreCase(employee.getSurname()))){
+                    actual.getSurname().equalsIgnoreCase(employee.getSurname())||
+                    actual.getEmployeeCountry().equalsIgnoreCase(employee.getEmployeeCountry())){
                 if(actual.getIDNumber().equalsIgnoreCase(employee.getIDNumber())){
                     //Maniobra para evitar que salga una excepcion al hacer este update debido
                     //a que si hago un update sin cambiar el idNumber, tirara error porque debe de ser unico
@@ -128,12 +121,14 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
                 }
                 employee=this.validationsBeforeSave(employee);
             }
+
         employee.setEditRegister(new Date());
         return repository.saveAndFlush(employee);
         }catch(Exception e){
             throw new Exception(e.getMessage());
         }
     }
+
 
     public Empleado validationsBeforeSave(Empleado employe)throws Exception{
 
@@ -204,10 +199,11 @@ public class EmpleadoServiceImpl implements IEmpleadoService{
                     break;
                 }
             }
-            emailGenerate=firstPart+c+"."+secondPart;
+            emailGenerate=firstPart+"."+c+secondPart;
         }
         employe.setEmail(emailGenerate);
-
+        System.out.println("---------------------------");
+        System.out.println(emailGenerate);
         Calendar calendar=Calendar.getInstance();
 
         Date fechaActual=new Date();
